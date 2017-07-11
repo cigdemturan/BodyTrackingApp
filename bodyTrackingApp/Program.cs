@@ -12,9 +12,7 @@ namespace bodyTrackingApp
     {
         public static KinectSensor _sensor = null;
         public static MultiSourceFrameReader _multiSourceFrameReader = null;
-        public static CoordinateMapper _coordinateMapper = null;
         public static Worker _worker = new Worker();
-        public static FileStream _jointsFileStream;
         static void Main(string[] args)
         {
             _sensor = KinectSensor.GetDefault();
@@ -25,7 +23,7 @@ namespace bodyTrackingApp
                 Console.WriteLine("sensorOpened");
                 if (_sensor.IsOpen)
                 {
-                    _coordinateMapper = _sensor.CoordinateMapper;
+                    _worker.InitilizeMapper(_sensor);
                     _multiSourceFrameReader = _sensor.OpenMultiSourceFrameReader(FrameSourceTypes.Depth | FrameSourceTypes.Body | FrameSourceTypes.BodyIndex);
                     _multiSourceFrameReader.MultiSourceFrameArrived += multiSourceReader_FrameArrived;
                 }
@@ -44,10 +42,9 @@ namespace bodyTrackingApp
             {
                 _worker.CreateFolderJoints();
                 _worker.CreateFoldersImage();
-                _jointsFileStream = _worker.InilizeFileStream();
+                _worker.InilizeFileStream();
             }
             //Console.WriteLine(_worker.counterFrame);
-            
 
             //long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             TimeSpan timeSpan = DateTime.Now.TimeOfDay;
@@ -63,7 +60,7 @@ namespace bodyTrackingApp
                     if (_bodyFrame != null)
                     {
                         _bodyFrame.GetAndRefreshBodyData(_worker._bodies);
-                        _worker.WriteBody(_worker._bodies, _jointsFileStream, timeNow);
+                        _worker.WriteBody(_worker._bodies, timeNow);
                     }
                 }
             });
@@ -97,7 +94,7 @@ namespace bodyTrackingApp
                 _worker.counterFrame = 0;
                 _worker.counterFile++;
                 _worker.CreateFoldersImage();
-                _jointsFileStream = _worker.InilizeFileStream();
+                _worker.InilizeFileStream();
             }
         }
     }

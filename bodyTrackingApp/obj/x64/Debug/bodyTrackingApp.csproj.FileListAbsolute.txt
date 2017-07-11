@@ -1,0 +1,18 @@
+c:\users\cigdem\documents\visual studio 2015\Projects\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\bodyTrackingApp.exe.config
+c:\users\cigdem\documents\visual studio 2015\Projects\bodyTrackingApp\bodyTrackingApp\obj\x64\Debug\bodyTrackingApp.csprojResolveAssemblyReference.cache
+c:\users\cigdem\documents\visual studio 2015\Projects\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\bodyTrackingApp.exe
+c:\users\cigdem\documents\visual studio 2015\Projects\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\bodyTrackingApp.pdb
+c:\users\cigdem\documents\visual studio 2015\Projects\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\Microsoft.Kinect.dll
+c:\users\cigdem\documents\visual studio 2015\Projects\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\Microsoft.Kinect.Face.dll
+c:\users\cigdem\documents\visual studio 2015\Projects\bodyTrackingApp\bodyTrackingApp\obj\x64\Debug\bodyTrackingApp.exe
+c:\users\cigdem\documents\visual studio 2015\Projects\bodyTrackingApp\bodyTrackingApp\obj\x64\Debug\bodyTrackingApp.pdb
+D:\FEC\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\bodyTrackingApp.exe.config
+D:\FEC\bodyTrackingApp\bodyTrackingApp\obj\x64\Debug\bodyTrackingApp.exe
+D:\FEC\bodyTrackingApp\bodyTrackingApp\obj\x64\Debug\bodyTrackingApp.pdb
+D:\FEC\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\bodyTrackingApp.exe
+D:\FEC\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\bodyTrackingApp.pdb
+D:\FEC\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\Microsoft.Kinect.dll
+D:\FEC\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\Microsoft.Kinect.Face.dll
+D:\FEC\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\Microsoft.Kinect.xml
+D:\FEC\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\Microsoft.Kinect.Face.xml
+D:\FEC\bodyTrackingApp\bodyTrackingApp\obj\x64\Debug\bodyTrackingApp.csprojResolveAssemblyReference.cache

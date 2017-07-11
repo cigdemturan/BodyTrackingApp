@@ -1,0 +1,2 @@
+c:\users\cigdem\documents\visual studio 2015\Projects\bodyTrackingApp\bodyTrackingApp\bin\Debug\bodyTrackingApp.exe.config
+c:\users\cigdem\documents\visual studio 2015\Projects\bodyTrackingApp\bodyTrackingApp\obj\Debug\bodyTrackingApp.csprojResolveAssemblyReference.cache

@@ -26,15 +26,21 @@ namespace bodyTrackingApp
         public string _fileName { get; set; }
         private string _folderNameRec = "recording";
         public string _jointsFolder, _depthFolder, _bodyIndexFolder;
-        //public FileStream jointsFileStream { get; set; }
         public int counterFile = 0;
         public int counterFrame = 0;
         private readonly int bytesPerPixel = (PixelFormats.Bgr32.BitsPerPixel + 7) / 8;
         private readonly int bytesPerPixelBI = (PixelFormats.Gray8.BitsPerPixel + 7) / 8;
         public bool flagNoBody = true;
-        //public ulong _trackingID;
         public FrameDescription depthFrameDescription { get; set; }
         public Body[] _bodies = new Body[6];
+        private FileStream jointsFileStream = null;
+        private FileStream jointsFileStream2D = null;
+        private CoordinateMapper _coordinateMapper = null;
+
+        public void InitilizeMapper(KinectSensor sensor)
+        {
+            _coordinateMapper = sensor.CoordinateMapper;
+        }
 
         public void CreateFolderJoints()
         {
@@ -48,21 +54,24 @@ namespace bodyTrackingApp
             _bodyIndexFolder = _folderNameRec + "/bodyIndex_" + counterFile + "/";
             Directory.CreateDirectory(_bodyIndexFolder);
         }
-        public FileStream InilizeFileStream()
+        public void InilizeFileStream()
         {
             //long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             TimeSpan timeSpan = DateTime.Now.TimeOfDay;
             string timeNow = timeSpan.ToString();
             timeNow = timeNow.Replace('.', '_');
             timeNow = timeNow.Replace(':', '_');
-            string jointsFile = _jointsFolder + "joints_" + counterFile + "_" + timeNow + "_.txt";
-            FileStream jointsFileStream = new FileStream(jointsFile, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            return jointsFileStream;
+            string jointsFile = _jointsFolder + "joints3D_" + counterFile + "_" + timeNow + "_.txt";
+            jointsFileStream = new FileStream(jointsFile, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            string jointsFile2D = _jointsFolder + "joints2D_" + counterFile + "_" + timeNow + "_.txt";
+            jointsFileStream2D = new FileStream(jointsFile2D, FileMode.OpenOrCreate, FileAccess.ReadWrite);
         }
-        public void WriteBody(Body[] _bodies, FileStream _jointsFileStream, string milliseconds)
+        public void WriteBody(Body[] _bodies, string milliseconds)
         {
-            var _jointsStreamWriter = new StreamWriter(_jointsFileStream);
-            _jointsStreamWriter.Write("\r\n{0}, ", milliseconds);
+            var _jointsStreamWriter3D = new StreamWriter(jointsFileStream);
+            _jointsStreamWriter3D.Write("\r\n{0}, ", milliseconds);
+            var _jointsStreamWriter2D = new StreamWriter(jointsFileStream2D);
+            _jointsStreamWriter2D.Write("\r\n{0}, ", milliseconds);
             int countB = 0;
 
             Body _bodyTracked = null;
@@ -86,24 +95,30 @@ namespace bodyTrackingApp
             {
                 foreach (JointType _joint in _bodyTracked.Joints.Keys)
                 {
+                    CameraSpacePoint position3D = _bodyTracked.Joints[_joint].Position;
+                    DepthSpacePoint position2D = _coordinateMapper.MapCameraPointToDepthSpace(position3D);
                     //_jointsStreamWriter.Write("{0}, ", body.Joints[_joint].JointType);
-                    _jointsStreamWriter.Write("{0}, ", _bodyTracked.Joints[_joint].Position.X);
-                    _jointsStreamWriter.Write("{0}, ", _bodyTracked.Joints[_joint].Position.Y);
-                    _jointsStreamWriter.Write("{0}, ", _bodyTracked.Joints[_joint].Position.Z);
+                    _jointsStreamWriter3D.Write("{0}, ", position3D.X);
+                    _jointsStreamWriter3D.Write("{0}, ", position3D.Y);
+                    _jointsStreamWriter3D.Write("{0}, ", position3D.Z);
                     //Console.WriteLine(body.Joints[_joint].JointType);
+                    _jointsStreamWriter2D.Write("{0}, ", position2D.X);
+                    _jointsStreamWriter2D.Write("{0}, ", position2D.Y);
                 }
             }
             else
             {
                 if (!flagNoBody)
                 {
-                    Console.WriteLine("lost tracking the body...");
+                    Console.WriteLine("lost the body...");
                     flagNoBody = true;
                 }
-                _jointsStreamWriter.Write("NaN, ");
+                _jointsStreamWriter3D.Write("NaN, ");
+                _jointsStreamWriter2D.Write("NaN, ");
             }
 
-            _jointsStreamWriter.Flush();
+            _jointsStreamWriter3D.Flush();
+            _jointsStreamWriter2D.Flush();
 
         }
         public void WriteDepth(DepthFrame _depthFrame, string milliseconds)
