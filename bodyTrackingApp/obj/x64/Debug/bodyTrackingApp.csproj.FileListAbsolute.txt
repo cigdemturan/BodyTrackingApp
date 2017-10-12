@@ -16,3 +16,14 @@ D:\FEC\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\Microsoft.Kinect.Face.dll
 D:\FEC\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\Microsoft.Kinect.xml
 D:\FEC\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\Microsoft.Kinect.Face.xml
 D:\FEC\bodyTrackingApp\bodyTrackingApp\obj\x64\Debug\bodyTrackingApp.csprojResolveAssemblyReference.cache
+C:\NOISE_PATTERN\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\bodyTrackingApp.exe.config
+C:\NOISE_PATTERN\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\bodyTrackingApp.exe
+C:\NOISE_PATTERN\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\bodyTrackingApp.pdb
+C:\NOISE_PATTERN\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\Microsoft.Kinect.dll
+C:\NOISE_PATTERN\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\Microsoft.Kinect.Face.dll
+C:\NOISE_PATTERN\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\Microsoft.Kinect.xml
+C:\NOISE_PATTERN\bodyTrackingApp\bodyTrackingApp\bin\x64\Debug\Microsoft.Kinect.Face.xml
+C:\NOISE_PATTERN\bodyTrackingApp\bodyTrackingApp\obj\x64\Debug\bodyTrackingApp.csprojResolveAssemblyReference.cache
+C:\NOISE_PATTERN\bodyTrackingApp\bodyTrackingApp\obj\x64\Debug\bodyTrackingApp.csproj.CoreCompileInputs.cache
+C:\NOISE_PATTERN\bodyTrackingApp\bodyTrackingApp\obj\x64\Debug\bodyTrackingApp.exe
+C:\NOISE_PATTERN\bodyTrackingApp\bodyTrackingApp\obj\x64\Debug\bodyTrackingApp.pdb

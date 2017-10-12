@@ -37,6 +37,18 @@ namespace bodyTrackingApp
         private FileStream jointsFileStream2D = null;
         private CoordinateMapper _coordinateMapper = null;
 
+        public void getSubjectID()
+        {
+            Console.WriteLine("enter the subject ID");
+            string input = Console.ReadLine();
+            _folderNameRec = Path.Combine(@"C:\NOISE_PATTERN\SAVINGS\", input);
+            if (!Directory.Exists(_folderNameRec))
+            {
+                Directory.CreateDirectory(_folderNameRec);
+                Console.WriteLine("folder is created..");
+            }
+        }
+
         public void InitilizeMapper(KinectSensor sensor)
         {
             _coordinateMapper = sensor.CoordinateMapper;
@@ -130,8 +142,13 @@ namespace bodyTrackingApp
             pixelsDepth = new byte[depthFrameDescription.Width * depthFrameDescription.Height * bytesPerPixel]; //Depth
             _depthFrame.CopyFrameDataToArray(depthData);
 
-            ushort minDepth = _depthFrame.DepthMinReliableDistance;
-            ushort maxDepth = _depthFrame.DepthMaxReliableDistance;
+
+            ushort minDepth = 1000;
+            ushort maxDepth = 3000;
+            //ushort minDepth = _depthFrame.DepthMinReliableDistance;
+            //ushort maxDepth = _depthFrame.DepthMaxReliableDistance;
+            //Console.WriteLine(minDepth);
+            //Console.WriteLine(maxDepth);
 
             int colorImageIndex = 0;
             for (int depthIndex = 0; depthIndex < depthData.Length; ++depthIndex)

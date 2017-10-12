@@ -13,9 +13,12 @@ namespace bodyTrackingApp
         public static KinectSensor _sensor = null;
         public static MultiSourceFrameReader _multiSourceFrameReader = null;
         public static Worker _worker = new Worker();
+        public static BodyFrame _bodyFrame = null;
         static void Main(string[] args)
         {
             _sensor = KinectSensor.GetDefault();
+
+            _worker.getSubjectID();
             
             if (_sensor != null)
             {
@@ -54,7 +57,6 @@ namespace bodyTrackingApp
 
             Task.Factory.StartNew(() =>
             {
-                BodyFrame _bodyFrame = null;
                 using (_bodyFrame = _multiSourceFrame.BodyFrameReference.AcquireFrame())
                 {
                     if (_bodyFrame != null)
